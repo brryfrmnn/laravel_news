@@ -15,11 +15,16 @@
                         <div class="form-group">
                             <label>Article</label>
                             <textarea class="form-control" name="article" placeholder="Input article"></textarea>
-                        </div> 
+                        </div>
+
                         <div class="form-group">
-                            <label>Upload Photo</label>
-                            <input type="file" name="photo">
-                        </div>                    
+                            <label>Category</label>
+                            <select name="category_id" class="form-control" required="required">
+                                @foreach ($category as $data)
+                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>                   
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

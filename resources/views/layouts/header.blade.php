@@ -54,27 +54,18 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Category <i class="fa fa-arrow-circle-o-down"></i></a>
 					<div class="dropdown-menu" style="margin-left: -203.625px;">
 						<div class="dropdown-inner">
+						@php 
+							$items = App\Category::all()->chunk(4);
+						@endphp
+
+						@foreach($items as $categories)
 							<ul class="list-unstyled">
-								<li><a href="archive.html">Text 301</a></li>
-								<li><a href="archive.html">Text 302</a></li>
-								<li><a href="archive.html">Text 303</a></li>
-								<li><a href="archive.html">Text 304</a></li>
-								<li><a href="archive.html">Text 305</a></li>
+
+								@foreach($categories as $category)
+									<li><a href="{{route('post.index', $category->id)}}">{{$category->name}}</a></li>
+								@endforeach
 							</ul>
-							<ul class="list-unstyled">
-								<li><a href="archive.html">Text 306</a></li>
-								<li><a href="archive.html">Text 307</a></li>
-								<li><a href="archive.html">Text 308</a></li>
-								<li><a href="archive.html">Text 309</a></li>
-								<li><a href="archive.html">Text 310</a></li>
-							</ul>
-							<ul class="list-unstyled">
-								<li><a href="archive.html">Text 311</a></li>
-								<li><a href="archive.html">Text 312</a></li>
-								<li><a href="archive.html#">Text 313</a></li>
-								<li><a href="archive.html#">Text 314</a></li>
-								<li><a href="archive.html">Text 315</a></li>
-							</ul>
+						@endforeach
 						</div>
 					</div>
 				</li>

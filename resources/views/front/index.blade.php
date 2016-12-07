@@ -75,25 +75,27 @@
 		<div class="row">
 			<div id="main-content"><!-- background not working -->
 				<div class="col-md-6">
+				@foreach($posts as $post)
 					<div class="box wrap-vid">
 						<div class="zoom-container">
 							<div class="zoom-caption">
-								<span class="youtube">Youtube</span>
+								<span class="youtube">{{$post->category->name}}</span>
 								<a href="single.html">
 									<i class="fa fa-play icon-play" style="color: #fff"></i>
 								</a>
-								<p>Video's Name</p>
+								<p>{{$post->title}}</p>
 							</div>
-							<img src="images/4.jpg" />
+							<img src="images/{{$post->image}}" />
 						</div>
-						<h3 class="vid-name"><a href="#">Video's Name</a></h3>
+						<h3 class="vid-name"><a href="#">{{$post->title}}</a></h3>
 						<div class="info">
-							<h5>By <a href="#">Kelvin</a></h5>
-							<span><i class="fa fa-calendar"></i>25/3/2015</span> 
-							<span><i class="fa fa-heart"></i>1,200</span>
+							<h5>By <a href="#">{{$post->user->name}}</a></h5>
+							<span><i class="fa fa-calendar"></i>{{$post->created_at}}</span> 
+							<span><i class="fa fa-heart"></i>{{$post->category->name}}</span>
 						</div>
-						<p class="more">Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan.Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non.ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan</p>
+						<p class="more">{{str_limit($post->article,140)}}<a href="{{route('post.show',$post->id)}}">Read More</a></p>
 					</div>
+				@endforeach
 					<div class="box">
 						<div class="box-header header-vimeo">
 							<h2>Vimeo</h2>
@@ -311,84 +313,34 @@
 							</ul>
 							<div class="tab-content">
 								<div id="most" class="tab-pane fade in active">
-									<div class="post wrap-vid">
-										<div class="zoom-container">
-											<div class="zoom-caption">
-												<span class="youtube">Youtube</span>
-												<a href="single.html">
-													<i class="fa fa-play-circle-o fa-3x" style="color: #fff"></i>
-												</a>
-												<p>Video's Name</p>
+									@foreach($random_posts as $random_post)
+										<div class="post wrap-vid">
+											<div class="zoom-container">
+												<div class="zoom-caption">
+													<span class="youtube">{{$random_post->category->name}}</span>
+													<a href="single.html">
+														<i class="fa fa-play-circle-o fa-3x" style="color: #fff"></i>
+													</a>
+													<p>{{$random_post->title}}</p>
+												</div>
+												<img src="images/{{$random_post->image}}" />
 											</div>
-											<img src="images/4.jpg" />
-										</div>
-										<div class="wrapper">
-											<h5 class="vid-name"><a href="#">Video's Name</a></h5>
-											<div class="info">
-												<h6>By <a href="#">Kelvin</a></h6>
-												<span><i class="fa fa-heart"></i>1,200 / <i class="fa fa-calendar"></i>25/3/2015</span>
-												<span class="rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half"></i>
-												</span>
-											</div>
-										</div>
-									</div>
-									<div class="post wrap-vid">
-										<div class="zoom-container">
-											<div class="zoom-caption">
-												<span class="vimeo">Vimeo</span>
-												<a href="single.html">
-													<i class="fa fa-play-circle-o fa-3x" style="color: #fff"></i>
-												</a>
-												<p>Video's Name</p>
-											</div>
-											<img src="images/4.jpg" />
-										</div>
-										<div class="wrapper">
-											<h5 class="vid-name"><a href="#">Video's Name</a></h5>
-											<div class="info">
-												<h6>By <a href="#">Kelvin</a></h6>
-												<span><i class="fa fa-heart"></i>1,200 / <i class="fa fa-calendar"></i>25/3/2015</span>
-												<span class="rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half"></i>
-												</span>
+											<div class="wrapper">
+												<h5 class="vid-name"><a href="#">{{$random_post->title}}</a></h5>
+												<div class="info">
+													<h6>By <a href="#">{{$random_post->user->name}}</a></h6>
+													<span><i class="fa fa-heart"></i>{{$random_post->category->name}} / <i class="fa fa-calendar"></i>{{$random_post->created_at}}</span>
+													<span class="rating">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-half"></i>
+													</span>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="post wrap-vid">
-										<div class="zoom-container">
-											<div class="zoom-caption">
-												<span class="youtube">Youtube</span>
-												<a href="single.html">
-													<i class="fa fa-play-circle-o fa-3x" style="color: #fff"></i>
-												</a>
-												<p>Video's Name</p>
-											</div>
-											<img src="images/4.jpg" />
-										</div>
-										<div class="wrapper">
-											<h5 class="vid-name"><a href="#">Video's Name</a></h5>
-											<div class="info">
-												<h6>By <a href="#">Kelvin</a></h6>
-												<span><i class="fa fa-heart"></i>1,200 / <i class="fa fa-calendar"></i>25/3/2015</span>
-												<span class="rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half"></i>
-												</span>
-											</div>
-										</div>
-									</div>
+									@endforeach
 								</div>
 								<div id="popular" class="tab-pane fade">
 									<div class="post wrap-vid">

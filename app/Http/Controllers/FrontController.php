@@ -24,14 +24,14 @@ class FrontController extends Controller
     					->limit(2)
     					->get();
 
-    	$random_posts = Post::inRandomOrder()->limit(3); //random post untuk side bat disamping
-/*
-    	$recent_comments = Comment::with('post')
+    	$random_posts = Post::inRandomOrder()->limit(3)->get(); //random post untuk side bar disamping
+
+    	/*$recent_comments = Comment::with('post')
     								->orderBy('id','desc')
     								->limit(3)
     								->get();*/ 
     	//berikan semua data2 ke view front.index
-    	return view('front.index',compact('posts','random_posts'));
+    	return view('front.index',compact('posts','random_posts','recent_comments'));
 
     }
 }

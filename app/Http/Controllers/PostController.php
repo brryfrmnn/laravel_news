@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests; //untuk menerima request dari form/inputan
 use App\Post; //jangan lupa gunakan dulu model Post nya supaya controllernya tahu
 use Auth;
+use App\Category;
 
 class PostController extends Controller
 {
     public function create()
     {
-    	return view('post.create'); //hanya memberikan tampilan pada view input-post.blade.php
+        $category = Category::all();
+    	return view('post.create', compact('category')); //hanya memberikan tampilan pada view input-post.blade.php
     }
 
     public function store(Request $request)
@@ -24,7 +26,7 @@ class PostController extends Controller
         if ($request->hasFile('photo')) {
             //cek dulu apakah jpg/png ?);
 
-            if ($request->photo->extension() == 'png' or $request->photo->extension() == 'jpg') {
+            if ($request->photo->extension() == 'png' || $request->photo->extension() == 'jpg') {
                 $nama_file = $request->photo->getClientOriginalName(); //simpan nama file di variable
                 //lakukan pemindahan gambar sesuai destinasi 
                 $move = $request->photo->move($destination,$nama_file);
